@@ -1,26 +1,59 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Home from './pages/Home'
+import Detail from './pages/Detail'
+import SearchResults from './pages/SearchResults'
+import { Link, Route } from 'wouter'
+import staticContext from './context/StaticContext'
+import { GifsContextProvider } from './context/GifsContext'
+
+// con el link cosigo que sea una SPA
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	return (
+		<staticContext.Provider value={{
+			// Valor inicial:
+			name: "Daniela",
+			suscribeteAlCanal: true
+		}}>
+			<div className="App">
+				<section className="App-content">
+
+					<Link to="/">
+						<figure className="App-logo">
+							{/* <img alt="giphify logo" src="/logo.png" /> */}
+							<span>GIPGIFY</span>
+						</figure>
+					</Link>
+
+
+					<GifsContextProvider>
+						<Route 
+							path="/" 
+							component={Home} 
+						/>
+						<Route 
+							path="/search/:keyword" 
+							component={SearchResults} 
+						/>
+						<Route 
+							path="/gif/:id" 
+							component={Detail} 
+						/>
+					</GifsContextProvider>
+
+				</section>
+			</div>
+		</staticContext.Provider>
+	);
 }
 
 export default App;
+
+// Context object:
+// 1. Consumidor
+// 2. Proveedor
+// Everything that is wrapped up in this object wil have acces to it
+
+// https://www.youtube.com/watch?v=2qgs7buSnHQ
