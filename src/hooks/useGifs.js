@@ -7,6 +7,9 @@ import getGifs from '../services/getGifs'
 
 export function useGifs({ keyword } = { keyword: null }) { // :null in case we don't want to search for any specific keyword
 	const [loading, setLoading] = useState(false)
+	const [loadingNextPage, setLoadingNextPage] = useState(false)
+	const [page, setPage] = useState(0)
+	const searchKeyword = keyword || localStorage.getItem("lastKeyword") || "random"
 
 	// With local state:
 	// const [gifs, setGifs] = useState([])
@@ -15,19 +18,30 @@ export function useGifs({ keyword } = { keyword: null }) { // :null in case we d
 	// With global state:
 	const {gifs, setGifs} = useContext(GifsContext)
 	
+	// call to the api and set gifs in the state
 	useEffect(() => {
 		setLoading(true)
-
-		const searchKeyword = keyword || localStorage.getItem("lastKeyword") || "random"
-
 		getGifs({ keyword: searchKeyword })
 			.then(gifs => {
 				setGifs(gifs)
 				setLoading(false)
 				localStorage.setItem("lastKeyword", keyword) // Save last search
 			})
-	}, [keyword, setGifs])
+	}, [keyword, searchKeyword, setGifs])
 
-	return {loading, gifs}
+	// 
+	useEffect(() => {
+		if(page === 0) return
+
+		setLoadingNextPage(true)
+		getGifs({ keyword: searchKeyword, page })
+			.then(nextGifs => {
+				// update state with a function that gifs you the previus vlues
+				setGifs(prevGifs => prevGifs.concat(nextGifs))
+				setLoadingNextPage(false)
+			})
+	}, [page, setGifs, searchKeyword])
+
+	return {loading, gifs, setPage}
 }
 
