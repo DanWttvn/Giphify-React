@@ -1,9 +1,11 @@
+import Spinner from 'components/Spinner/Spinner'
 import React, { Fragment, useState } from 'react'
-import { Link, useLocation } from 'wouter'
+import { useLocation } from 'wouter'
 import ListGifs from '../../components/ListGifs'
+import TrendingTerms from '../../components/TrendingTerms'
 import { useGifs } from '../../hooks/useGifs'
 
-const popularKeywords = ["doggy", "covid", "animals", "got"]
+
 
 function Home() {
 
@@ -29,22 +31,19 @@ function Home() {
 				<input placeholder="Search..." onChange={handleInput} type="text" value={keyword}/>
 			</form>
 
-			<h3 className="page-title">Trending</h3>
+			<h3 className="page-title">Last Search</h3>
 
-			<ul>
-				{popularKeywords.map(keyword => (
-					<li key={keyword}>
-						<Link to={`/search/${keyword}`}> 
-							Gifs de {keyword}
-						</Link>
-					</li>
-				))}
-			</ul>
 
-			{loading 
-				? <p>Loading...</p>
-				: <ListGifs gifs={gifs} />
-			}
+			<section className="gifs-section">
+				{loading 
+					? <Spinner />
+					: <ListGifs gifs={gifs} />
+				}
+			</section>
+
+			<aside>
+				<TrendingTerms />
+			</aside>
 
 		</Fragment>
 	)

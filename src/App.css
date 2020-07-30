@@ -35,3 +35,8 @@ input {
 input:focus {
 	outline: 1px solid rgb(0, 60, 160);
 }
+
+.App-content .gifs-section {
+	min-height: 100vh;
+
+}

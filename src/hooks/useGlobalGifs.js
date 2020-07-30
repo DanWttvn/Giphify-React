@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import GifsContext from '../context/GifsContext'
 
 // Custom hook read only

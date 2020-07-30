@@ -3,7 +3,6 @@
 	--gridList-rows: 250px;
 	--gridList-gap: 8px;
 }
-  
 .ListGifs {
 	display: grid;
 	min-height: 100vh;

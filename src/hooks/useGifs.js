@@ -6,7 +6,6 @@ import getGifs from '../services/getGifs'
 
 
 export function useGifs({ keyword } = { keyword: null }) { // :null in case we don't want to search for any specific keyword
-
 	const [loading, setLoading] = useState(false)
 
 	// With local state:
@@ -15,7 +14,6 @@ export function useGifs({ keyword } = { keyword: null }) { // :null in case we d
 
 	// With global state:
 	const {gifs, setGifs} = useContext(GifsContext)
-
 	
 	useEffect(() => {
 		setLoading(true)

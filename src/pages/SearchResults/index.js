@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
-import ListGifs from '../../components/ListGifs'
-import { useGifs } from '../../hooks/useGifs';
+import ListGifs from 'components/ListGifs'
+import { useGifs } from 'hooks/useGifs';
+import Spinner from 'components/Spinner/Spinner';
 
 
 function SearchResults({ params }) {
@@ -11,8 +12,9 @@ function SearchResults({ params }) {
 
 	return (
 		<Fragment>
+			<h3 className="page-title">{decodeURI(keyword)}</h3>
 			{loading 
-				? <p>Loading...</p>
+				? <Spinner/>
 				: <ListGifs gifs={gifs} />
 			}
 		</Fragment>

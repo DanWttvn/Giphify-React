@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import Gif from '../../components/Gif';
 // import StaticContext from '../../context/StaticContext'
 import useGlobalGifs from '../../hooks/useGlobalGifs';
@@ -20,7 +20,7 @@ export default function Detail({ params }) {
 
 	return (
 		<Fragment>
-			<h1>{params.id}</h1>
+			<h3 className="page-title">{gif?.title}</h3>
 			<Gif {...gif} />
 		</Fragment>
 	)
