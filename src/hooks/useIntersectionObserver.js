@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from "react"
 
-export default function useIntersectionObserver({ distance = "100px" } = {}) {
+export default function useIntersectionObserver({ distance = "100px", externalRef, once = true } = {}) {
 	const [show, setShow] = useState(false)
 	const elementRef = useRef()
 
 	useEffect(() => {
+		const element = externalRef ? externalRef.current : elementRef.current
 		const onChange = (entries, observer) => {
 			const el = entries[0]
 			if(el.isIntersecting) {
 				setShow(true)
-				observer.disconnect() // so it stops rendering
+				once && observer.disconnect() // so it stops rendering
+			} else {
+				!once && setShow(false)
 			}
 		}
 
@@ -18,7 +21,7 @@ export default function useIntersectionObserver({ distance = "100px" } = {}) {
 			rootMargin: distance // distance to the element when gets triggered
 		})
 
-		observer.observe(elementRef.current)
+		if(element) observer.observe(element)
 
 		return() => observer.disconnect() // cleans
 	})

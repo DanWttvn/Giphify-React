@@ -3,12 +3,13 @@
 	--gridList-rows: 250px;
 	--gridList-gap: 8px;
 }
+
 .ListGifs {
 	display: grid;
 	min-height: 100vh;
 	grid-template-columns: repeat(auto-fit, minmax(var(--gridList-column), 1fr));
 	grid-auto-rows: var(--gridList-rows);
-	grid-template-rows: masonry;
+	/* grid-template-rows: masonry; */ /* Only firefox */
 	grid-auto-flow: row dense;
 	grid-gap: var(--gridList-gap, 6px);
 	gap: var(--gridList-gap, 6px);
