@@ -17,21 +17,12 @@ function SearchResults({ params }) {
 		once: false //we can control when it leaves the viewport
 	})
 
-
-	const handleNextPage = () => {
-		setPage(prevPage => prevPage + 1)
-	}
-
-	// const handleNextPage = () => {
-	// 	console.log("next page");
-	// }
-
 	// Infinite scroll
 	// debounce: so it only renders once 
-	// useCallback: Similar to useRef but with parameters to update (like useeffect)
+	// useCallback: Similar to useRef but with parameters to update (like useeffect). In this case I need to conserve thissame fonction instead of re-buiilding it every time the component updates. I need it for the deounce to know how many times its been already executed
 	const debounceHandleNextPage = useCallback(debounce(() => 
-		handleNextPage(), 200
-	), [])
+		setPage(prevPage => prevPage + 1), 200
+	), []) // if [], the funciton is only 1 time created
 	
 
 	useEffect(() => {

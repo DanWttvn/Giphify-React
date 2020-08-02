@@ -5,7 +5,10 @@ export default function useIntersectionObserver({ distance = "100px", externalRe
 	const elementRef = useRef()
 
 	useEffect(() => {
+		let observer
+
 		const element = externalRef ? externalRef.current : elementRef.current
+
 		const onChange = (entries, observer) => {
 			const el = entries[0]
 			if(el.isIntersecting) {
@@ -17,13 +20,23 @@ export default function useIntersectionObserver({ distance = "100px", externalRe
 		}
 
 		// This API allows me to know when an element is in the viewport
-		const observer = new IntersectionObserver(onChange, {
-			rootMargin: distance // distance to the element when gets triggered
+		// const observer = new IntersectionObserver(onChange, {
+		// 	rootMargin: distance // distance to the element when gets triggered
+		// })
+
+		// ... in case the browser doesnt support it 
+		Promise.resolve(
+			typeof IntersectionObserver !== 'undefined'
+				? IntersectionObserver
+				: import('intersection-observer')
+		).then(() => {
+			observer = new IntersectionObserver(onChange, {
+				rootMargin: distance
+			})
+			if(element) observer.observe(element)
 		})
 
-		if(element) observer.observe(element)
-
-		return() => observer.disconnect() // cleans
+		return() => observer && observer.disconnect() // cleans
 	})
 	return {show, elementRef}
 }

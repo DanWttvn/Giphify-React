@@ -9,6 +9,10 @@ import { GifsContextProvider } from './context/GifsContext'
 
 // con el link cosigo que sea una SPA
 
+
+//! https://www.youtube.com/watch?v=Wo7_OVtu1ls&list=PLV8x_i1fqBw0B008sQn79YxCjkHJU84pC&index=7&t=2224s
+// 32:50
+
 function App() {
 
 	return (
