@@ -20,4 +20,5 @@ function SearchForm({ onSubmit }) {
 	)
 }
 
-export default SearchForm
+// React.memo: compares the previous and the new state and, if its the same, it doesn't render the component again (in home or whenever I use it)
+export default React.memo(SearchForm)

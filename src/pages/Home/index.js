@@ -1,6 +1,6 @@
 import SearchForm from 'components/SearchForm'
 import Spinner from 'components/Spinner/Spinner'
-import React, { Fragment, useCallback, useState } from 'react'
+import React, { Fragment, useCallback } from 'react'
 import { useLocation } from 'wouter'
 import ListGifs from '../../components/ListGifs'
 import TrendingTerms from '../../components/TrendingTerms'

@@ -3,7 +3,7 @@ import Gif from '../Gif'
 import './ListGifs.css'
 
 
-export default function ListGifs ({ gifs }) {
+export default function ListGifs({ gifs }) {
 	return (
 		<div className="ListGifs">
 			{gifs.map(({ title, id, url })=> (
