@@ -4,6 +4,7 @@ import { useGifs } from 'hooks/useGifs';
 import Spinner from 'components/Spinner/Spinner';
 import useIntersectionObserver from 'hooks/useIntersectionObserver';
 import debounce from 'just-debounce-it'
+import useSEO from 'hooks/useSEO';
 
 
 function SearchResults({ params }) {
@@ -16,6 +17,9 @@ function SearchResults({ params }) {
 		externalRef: loading ? null : externalRef,
 		once: false //we can control when it leaves the viewport
 	})
+
+	const title = keyword ? decodeURI(keyword) : ""
+	useSEO({ title })
 
 	// Infinite scroll
 	// debounce: so it only renders once 
