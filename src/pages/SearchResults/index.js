@@ -5,6 +5,7 @@ import Spinner from 'components/Spinner/Spinner';
 import useIntersectionObserver from 'hooks/useIntersectionObserver';
 import debounce from 'just-debounce-it'
 import useSEO from 'hooks/useSEO';
+import { Helmet } from 'react-helmet';
 
 
 function SearchResults({ params }) {
@@ -19,7 +20,6 @@ function SearchResults({ params }) {
 	})
 
 	const title = keyword ? decodeURI(keyword) : ""
-	useSEO({ title })
 
 	// Infinite scroll
 	// debounce: so it only renders once 
@@ -36,6 +36,10 @@ function SearchResults({ params }) {
 
 	return (
 		<Fragment>
+			<Helmet>
+				<title>{title} results | giphify</title>
+				<meta name="description" content="Search results" />
+			</Helmet>
 			<h3 className="page-title">{decodeURI(keyword)}</h3>
 			
 			{loading 
@@ -45,9 +49,8 @@ function SearchResults({ params }) {
 						<ListGifs gifs={gifs} />
 						<div id="visor" ref={externalRef}></div>
 					</Fragment>
-				)}
-
-			{/* <button onClick={handleNextPage} >Next Page</button> */}
+				)
+			}
 		</Fragment>
 	)
 }

@@ -1,11 +1,11 @@
 import SearchForm from 'components/SearchForm'
 import Spinner from 'components/Spinner/Spinner'
 import React, { Fragment, useCallback } from 'react'
+import { Helmet } from 'react-helmet'
 import { useLocation } from 'wouter'
 import ListGifs from '../../components/ListGifs'
 import TrendingTerms from '../../components/TrendingTerms'
 import { useGifs } from '../../hooks/useGifs'
-
 
 
 function Home() {
@@ -20,6 +20,9 @@ function Home() {
 	
 	return (
 		<Fragment>
+			<Helmet>
+				<title>Home | giphify</title>
+			</Helmet>
 			<SearchForm onSubmit={handleSubmit} />
 			<h3 className="page-title">Last Search</h3>
 			<section className="gifs-section">
