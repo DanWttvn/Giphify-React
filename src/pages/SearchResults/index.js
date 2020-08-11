@@ -4,15 +4,15 @@ import { useGifs } from 'hooks/useGifs';
 import Spinner from 'components/Spinner/Spinner';
 import useIntersectionObserver from 'hooks/useIntersectionObserver';
 import debounce from 'just-debounce-it'
-import useSEO from 'hooks/useSEO';
 import { Helmet } from 'react-helmet';
+import SearchForm from 'components/SearchForm';
 
 
 function SearchResults({ params }) {
 	
-	const { keyword } = params
+	const { keyword, rating } = params
 	// Custom hook to reutilize:
-	const { loading, gifs, setPage } = useGifs({keyword})
+	const { loading, gifs, setPage } = useGifs({keyword, rating})
 	const externalRef = useRef()
 	const { show } = useIntersectionObserver({ 
 		externalRef: loading ? null : externalRef,
@@ -40,6 +40,11 @@ function SearchResults({ params }) {
 				<title>{title} results | giphify</title>
 				<meta name="description" content="Search results" />
 			</Helmet>
+
+			<header className="App-header">
+				<SearchForm initialKeyword={keyword} initialRating={rating} />
+			</header>
+			
 			<h3 className="page-title">{decodeURI(keyword)}</h3>
 			
 			{loading 

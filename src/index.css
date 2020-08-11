@@ -1,6 +1,28 @@
+html {
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+.App-header {
+  background-color: inherit;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  font-size: 3rem;
+  font-weight: bold;
 }

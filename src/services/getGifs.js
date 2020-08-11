@@ -1,8 +1,8 @@
 import { api_key, api_URL } from "./settings"
 
-export default function getGifs ({limit = 25, keyword = "gif", page = 0} = {}) { // si no le paso nada, default is {}. si lo que le paso no es keyword, será "gif"
+export default function getGifs ({limit = 25, keyword = "gif", page = 0, rating="g"} = {}) { // si no le paso nada, default is {}. si lo que le paso no es keyword, será "gif"
 
-	const apiURL = `${api_URL}/gifs/search?api_key=${api_key}&q=${keyword}&limit=${limit}&offset=${page*limit}&rating=g&lang=en` // offset is where it starts to count (for pagination)
+	const apiURL = `${api_URL}/gifs/search?api_key=${api_key}&q=${keyword}&limit=${limit}&offset=${page*limit}&rating=${rating}&lang=en` // offset is where it starts to count (for pagination)
 
 	return (
 		fetch(apiURL)
