@@ -2,27 +2,42 @@ import React from 'react'
 import { useReducer } from 'react'
 import useLocation from 'wouter/use-location'
 import './SearchForm.css'
+import { UPDATE_KEYWORD, UPDATE_RATING, RESET_SEARCH } from 'services/actionTypes'
 
 //* https://www.youtube.com/watch?v=Wjy_nlYXTik&list=PLV8x_i1fqBw0B008sQn79YxCjkHJU84pC&index=4
-// 44:00
+// 44:30
 
 const ratings = ["g", "pg", "pg-13", "r"]
 
-const reducer = (state, action) => {
-	return {
-		...state,
-		keyword: action.payload
+const reducer = (state, {type, payload}) => {
+	switch (type) {
+		case UPDATE_KEYWORD:
+			return {
+				...state,
+				keyword: payload
+			}
+		
+		case UPDATE_RATING:
+			return {
+				...state,
+				rating: payload
+			}
+
+		case RESET_SEARCH:
+			return {
+				...state,
+				keyword: "",
+				rating: "g",
+			}
+		default:
+			return state
 	}
 }
 
 function SearchForm({ initialKeyword = "", initialRating = "g" }) {
-	// const [keyword, setKeyword] = useState(decodeURI(initialKeyword))
-	// const [rating, setRating] = useState(initialRating)
-
 	const [currentPath, pushPath] = useLocation();
 
-
-	// Reducer
+	// Centralised state
 	const [state, dispatch] = useReducer(reducer, {
 		keyword: decodeURI(initialKeyword),
 		rating: initialRating
@@ -32,11 +47,16 @@ function SearchForm({ initialKeyword = "", initialRating = "g" }) {
 
 
 	const handleInput = e => {
-		dispatch({type: "update_keyword", payload: e.target.value})
+		dispatch({type: UPDATE_KEYWORD, payload: e.target.value})
 	}
 	
 	const handleChangeRating = e => {
-		dispatch({type: "update_rating", payload: e.target.value})
+		dispatch({type: UPDATE_RATING, payload: e.target.value})
+	}
+
+	const handleReset = e => {
+		e.preventDefault();
+		dispatch({type: RESET_SEARCH})
 	}
 
 	const handleSubmit = e => {
@@ -51,6 +71,7 @@ function SearchForm({ initialKeyword = "", initialRating = "g" }) {
 				<option disabled>Rating Type</option>
 				{ratings.map(rating => <option key={rating}>{rating}</option>)}
 			</select>
+			<button onClick={handleReset}>Reset</button>
 			<button>Search</button>
 		</form>
 	)

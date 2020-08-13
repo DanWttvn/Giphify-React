@@ -2,9 +2,9 @@ import SearchForm from 'components/SearchForm'
 import Spinner from 'components/Spinner/Spinner'
 import React, { Fragment } from 'react'
 import { Helmet } from 'react-helmet'
-import ListGifs from '../../components/ListGifs'
-import TrendingTerms from '../../components/TrendingTerms'
-import { useGifs } from '../../hooks/useGifs'
+import ListGifs from 'components/ListGifs'
+import TrendingTerms from 'components/TrendingTerms'
+import { useGifs } from 'hooks/useGifs'
 
 
 function Home() {
