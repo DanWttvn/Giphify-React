@@ -1,62 +1,29 @@
+import { useForm } from 'hooks/useForm'
 import React from 'react'
-import { useReducer } from 'react'
 import useLocation from 'wouter/use-location'
 import './SearchForm.css'
-import { UPDATE_KEYWORD, UPDATE_RATING, RESET_SEARCH } from 'services/actionTypes'
 
 //* https://www.youtube.com/watch?v=Wjy_nlYXTik&list=PLV8x_i1fqBw0B008sQn79YxCjkHJU84pC&index=4
-// 44:30
+// 1:10.00
 
 const ratings = ["g", "pg", "pg-13", "r"]
 
-const reducer = (state, {type, payload}) => {
-	switch (type) {
-		case UPDATE_KEYWORD:
-			return {
-				...state,
-				keyword: payload
-			}
-		
-		case UPDATE_RATING:
-			return {
-				...state,
-				rating: payload
-			}
-
-		case RESET_SEARCH:
-			return {
-				...state,
-				keyword: "",
-				rating: "g",
-			}
-		default:
-			return state
-	}
-}
 
 function SearchForm({ initialKeyword = "", initialRating = "g" }) {
+	const { keyword, rating, updateKeyword, updateRating, resetSearch } = useForm({initialKeyword, initialRating})
 	const [currentPath, pushPath] = useLocation();
 
-	// Centralised state
-	const [state, dispatch] = useReducer(reducer, {
-		keyword: decodeURI(initialKeyword),
-		rating: initialRating
-	})
-
-	const { keyword, rating } = state
-
-
 	const handleInput = e => {
-		dispatch({type: UPDATE_KEYWORD, payload: e.target.value})
+		updateKeyword(e.target.value)
 	}
 	
 	const handleChangeRating = e => {
-		dispatch({type: UPDATE_RATING, payload: e.target.value})
+		updateRating(e.target.value)
 	}
 
 	const handleReset = e => {
 		e.preventDefault();
-		dispatch({type: RESET_SEARCH})
+		resetSearch()
 	}
 
 	const handleSubmit = e => {
