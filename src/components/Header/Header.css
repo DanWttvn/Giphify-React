@@ -1,4 +1,14 @@
-.login-header{
+.login-header {
+	width: 100%;
 	display: flex;
 	justify-content: flex-end;
+}
+
+.login-header a:hover {
+	color: #ccc
+}
+
+
+.login-header button:hover {
+	color: #ccc
 }

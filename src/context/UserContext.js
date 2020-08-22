@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 
 const Context = React.createContext({})
 
-export function GifsContextProvider({ children }) {
-	const [gifs, setGifs] = useState([])
+export function UserContextProvider({ children }) {
+	const [token, setToken] = useState(null)
 
 	return (
-		<Context.Provider value={{gifs, setGifs}}>
+		<Context.Provider value={{token, setToken}}>
 			{children}
 		</Context.Provider>
 	)
