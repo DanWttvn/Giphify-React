@@ -2,7 +2,6 @@ import { useReducer } from 'react'
 import { UPDATE_KEYWORD, UPDATE_RATING, RESET_SEARCH } from 'services/actionTypes'
 
 
-
 const reducer = (state, {type, payload}) => {
 	switch (type) {
 		case UPDATE_KEYWORD:
@@ -29,8 +28,7 @@ const reducer = (state, {type, payload}) => {
 }
 
 
-export const useForm = ({ initialKeyword, initialRating }) => {
-	// Centralised state
+export const useForm = ({ initialKeyword = "", initialRating = "g" } = {}) => {
 	const [state, dispatch] = useReducer(reducer, {
 		keyword: decodeURI(initialKeyword),
 		rating: initialRating

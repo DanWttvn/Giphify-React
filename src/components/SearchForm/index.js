@@ -3,8 +3,6 @@ import React from 'react'
 import useLocation from 'wouter/use-location'
 import './SearchForm.css'
 
-//* https://www.youtube.com/watch?v=Wjy_nlYXTik&list=PLV8x_i1fqBw0B008sQn79YxCjkHJU84pC&index=4
-// 1:10.00
 
 const ratings = ["g", "pg", "pg-13", "r"]
 

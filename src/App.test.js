@@ -3,6 +3,11 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
 
+// test('test', () => {
+// 	expect(true).toBe(true)
+// })
+
+
 test('renders without crashing', async () => {
 	const { findByText } = render(<App />);
 	const linkElement = await findByText(/Last Search/i);
@@ -10,16 +15,16 @@ test('renders without crashing', async () => {
 });
 
 
-// test.only('search form works', async () => {
-// 	render(<App/>)
-// 	const input = await screen.findByRole("textbox")
-// 	fireEvent.change(input, { target: {value: "LOL"}})
-// 	const button = await screen.findByRole("textbox")
-// 	fireEvent.click(button)
+test.only('search form works', async () => {
+	render(<App/>)
+	const input = await screen.findByRole("textbox")
+	fireEvent.change(input, { target: {value: "LOL"}})
+	const button = await screen.findByRole("textbox")
+	fireEvent.click(button)
 
-// 	screen.debug()
+	screen.debug()
 	
-// 	const title = await screen.findByText("LOL")
-// 	expect(title).toBeVisible()
-// });
+	const title = await screen.findByText("LOL")
+	expect(title).toBeVisible()
+});
 
