@@ -7,7 +7,7 @@ import useLocation from 'wouter/use-location'
 function Login() {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
-	const [location, pushLocation] = useLocation()
+	const [, pushLocation] = useLocation()
 	const { isLogged, login, isLoginLoading, loginError } = useUser()
 
 

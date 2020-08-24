@@ -7,7 +7,7 @@ import getGifs from '../services/getGifs'
 
 export function useGifs({ keyword, rating } = { keyword: null }) { // :null in case we don't want to search for any specific keyword
 	const [loading, setLoading] = useState(false)
-	const [loadingNextPage, setLoadingNextPage] = useState(false)
+	const [, setLoadingNextPage] = useState(false)
 	const [page, setPage] = useState(0)
 	const searchKeyword = keyword || localStorage.getItem("lastKeyword") || "random"
 

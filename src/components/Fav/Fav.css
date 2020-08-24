@@ -1,0 +1,19 @@
+.Fav {
+	background: #fff;
+	border-radius: 50%;
+	color: red;
+	font-weight: bold;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	display: flex; justify-content: center; align-items: center;
+}
+
+.Fav span {
+	display: block;
+	margin: 0 auto;
+}
+
+.Fav:hover {
+	background: #000;
+}

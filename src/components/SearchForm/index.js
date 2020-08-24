@@ -9,7 +9,7 @@ const ratings = ["g", "pg", "pg-13", "r"]
 
 function SearchForm({ initialKeyword = "", initialRating = "g" }) {
 	const { keyword, rating, updateKeyword, updateRating, resetSearch } = useForm({initialKeyword, initialRating})
-	const [currentPath, pushPath] = useLocation();
+	const [, pushPath] = useLocation();
 
 	const handleInput = e => {
 		updateKeyword(e.target.value)
