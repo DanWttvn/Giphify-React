@@ -5,6 +5,7 @@ import Detail from './pages/Detail'
 import SearchResults from './pages/SearchResults'
 import Login from './pages/Login'
 import Header from './components/Header'
+import ErrorPage from 'pages/ErrorPage';
 import './App.css';
 
 // import staticContext from './context/StaticContext'
@@ -49,7 +50,7 @@ function App() {
 						/>
 						<Route 
 							path="/404" 
-							component={() => <h1>404 Error</h1>} 
+							component={ErrorPage} 
 						/>
 					</GifsContextProvider>
 

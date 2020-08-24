@@ -1,3 +1,4 @@
+import Button from 'components/Button'
 import { useForm } from 'hooks/useForm'
 import React from 'react'
 import useLocation from 'wouter/use-location'
@@ -37,7 +38,7 @@ function SearchForm({ initialKeyword = "", initialRating = "g" }) {
 				{ratings.map(rating => <option key={rating}>{rating}</option>)}
 			</select>
 			<button onClick={handleReset}>Reset</button>
-			<button>Search</button>
+			<Button>Search</Button>
 		</form>
 	)
 }

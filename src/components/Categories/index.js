@@ -1,23 +1,22 @@
 import React from "react";
-import { Link } from "wouter";
-// import "./Category.css";
+import { CategoryLink, CategoryList, CategoryListItem, CategoryTitle } from "./styles.js"
 
 export default function Categories({ name, terms = [] }) {
   return (
     <section>
-		<p>{name}</p>
-		<ul>
-			{terms.map(term => (
-				<li
+		<CategoryTitle>{name}</CategoryTitle>
+		<CategoryList>
+			{terms.map((term, i) => (
+				<CategoryListItem
 					key={term}
-					// type='primary'
+					index={i}
 				>
-					<Link to={`/search/${term}`}>
+					<CategoryLink to={`/search/${term}`}>
 						{term}
-					</Link>
-				</li>
+					</CategoryLink>
+				</CategoryListItem>
 			))}
-		</ul>
+		</CategoryList>
     </section>
   );
 }
